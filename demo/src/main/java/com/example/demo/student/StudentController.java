@@ -12,9 +12,12 @@ import java.util.List;
 @RequestMapping(path = "api/v1/student")
 public class StudentController {
 
+    // method that returns a list of student objs
     @GetMapping
     public List<Student> getStudents() {
+        // returns a list made of...
         return List.of(
+                // ... a new student obj (hardcoded)
                 new Student(
                         1L,
                         "Mariam",
