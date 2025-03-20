@@ -12,19 +12,16 @@ import java.util.List;
 @RequestMapping(path = "api/v1/student")
 public class StudentController {
 
-    // method that returns a list of student objs
+    // instance and constructor here to receive data from StudentService
+    private final StudentService studentService;
+    public StudentController(StudentService studentService) {
+        this.studentService = studentService;
+    }
+
+    // GET http request
+    // can take a parameter to show the data at the url+paramater url page
     @GetMapping
-    public List<Student> getStudents() {
-        // returns a list made of...
-        return List.of(
-                // ... a new student obj (hardcoded)
-                new Student(
-                        1L,
-                        "Mariam",
-                        "mariam.jamal@gmail.com",
-                        LocalDate.of(2000, Month.JANUARY, 5),
-                        21
-                )
-        );
+    public List<Student> getStudent() {
+        return studentService.getStudents();
     }
 }
