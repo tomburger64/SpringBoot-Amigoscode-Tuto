@@ -1,8 +1,33 @@
 package com.example.demo.student;
 
+import jakarta.persistence.*;
+
 import java.time.LocalDate;
 
+// @Entity marks class as a JPA "entity"
+// means it's mapped (linked) to a db table
+// -
+// @Table with a parameter specifies the name of the table when given as an arg
+@Entity
+@Table
 public class Student {
+    // @Id marks the "primary key"
+    // -
+    // @SequenceGenerator makes sequences (a db count to keep track of the right to then increment it)
+    // allocationSize means by how much its incremented everytime
+    // -
+    // @GeneratedValue specifies the "strategy" the value should be generated (using sequence here)
+    // generator is set to the seq gen above
+    @Id
+    @SequenceGenerator(
+            name = "student_sequence",
+            sequenceName = "student_sequence",
+            allocationSize = 1
+    )
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "student_sequence"
+    )
     private Long id;
     private String name;
     private String email;
